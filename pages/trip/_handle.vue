@@ -88,7 +88,7 @@ import Contact from '~/vuetify-package/nextkit/components/custom/contact/Contact
 export default {
   head() {
     return {
-      title: this.$data.productDetail.title,
+      title: this.productDetail.title,
       description: this.$data.productDetail.short_description,
       meta: [
         {
