@@ -6,9 +6,9 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: function () {
-      return process.env.META_TITLE
-    },
+    // titleTemplate: function () {
+    //   return process.env.META_TITLE
+    // },
     title: process.env.META_TITLE,
     htmlAttrs: {
       lang: 'en',
