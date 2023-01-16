@@ -107,8 +107,8 @@ export default {
             : this.$data.productDetail.short_description,
         },
         {
-          hid: 'og:img',
-          name: 'og:img',
+          hid: 'og:image',
+          name: 'og:image',
           content: this.$data.productDetail.img_src,
         },
         {

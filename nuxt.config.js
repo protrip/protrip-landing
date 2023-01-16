@@ -34,9 +34,9 @@ export default {
         content: process.env.META_DESCRIPTION,
       },
       {
-        hid: 'og:img',
-        property: 'og:img',
-        content: '/logo.png',
+        hid: 'og:image',
+        property: 'og:image',
+        content: 'https://cdn.protrip.com.vn/images/protrip.png',
       },
       {
         hid: 'title',
@@ -56,7 +56,7 @@ export default {
       {
         hid: 'img',
         property: 'img',
-        content: '/logo.png',
+        content: 'https://cdn.protrip.com.vn/images/protrip.png',
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/logo.png' }],
