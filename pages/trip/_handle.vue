@@ -84,6 +84,7 @@ import { cloneDeep } from 'lodash'
 import { formatCurrency } from '~/core/utils/currency'
 import ImageSlide from '~/components/shared/ImagesCustom/ImageSlide'
 import Contact from '~/vuetify-package/nextkit/components/custom/contact/Contact'
+import tourisServices from "@/services/apis/tourisServices";
 
 export default {
   head() {
@@ -154,8 +155,8 @@ export default {
     }
   },
   computed: {},
-  mounted() {
-    this.init()
+  async fetch() {
+    await this.init()
   },
   filters: {
     formatPrice(price) {
@@ -168,7 +169,7 @@ export default {
     }),
     async init() {
       const handle = this.$route.params.handle
-      const promise = [this.fetchDetailTrip({ handle: handle })]
+      const promise = [tourisServices.getDetailTour({ handle: handle })]
       const [trip] = await Promise.all(promise)
       this.productDetail = cloneDeep({ ...trip, ...trip.trip })
       this.isLoading = false
