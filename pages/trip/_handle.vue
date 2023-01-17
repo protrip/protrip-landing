@@ -169,6 +169,8 @@ export default {
     }),
     async init() {
       const handle = this.$route.params.handle
+      console.log('=================')
+      console.log(handle)
       const promise = [tourisServices.getDetailTour({ handle: handle })]
       const [trip] = await Promise.all(promise)
       this.productDetail = cloneDeep({ ...trip, ...trip.trip })

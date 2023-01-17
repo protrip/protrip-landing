@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     goToDetail() {
-      this.$router.push({name: 'trip-handle', params: this.trip.handle})
+      this.$router.push({name: 'trip-handle', params: {handle:this.trip.handle}})
     }
   }
 }
