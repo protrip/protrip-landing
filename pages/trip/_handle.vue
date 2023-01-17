@@ -25,7 +25,7 @@
             <div class="product-detail__description">
               <h1>{{ $t('description') }}</h1>
               <div>
-                <div v-html="productDetail.long_description"></div>
+                <div class="text-black" v-html="productDetail.long_description"></div>
               </div>
             </div>
           </v-col>
