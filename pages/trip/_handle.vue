@@ -38,10 +38,10 @@
                   <p
                     v-show="productDetail.compare_at_price !== productDetail.price"
                     class="mr-4 text--strike-through my-0"
-                    >{{ productDetail.compare_at_price | formatPrice }}</p
+                  >{{ productDetail.compare_at_price | formatPrice }}</p
                   >
                   <v-chip class="ma-2" color="pink" label text-color="white">
-                    <v-icon left> mdi-label </v-icon>
+                    <v-icon left> mdi-label</v-icon>
                     <b class="font-weight-bold">{{ productDetail.price | formatPrice }} </b>
                   </v-chip>
                 </div>
@@ -72,16 +72,16 @@
         </v-row>
 
         <!--     Form contact     -->
-        <Contact id="contact-form" />
+        <Contact id="contact-form"/>
       </div>
     </v-container>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
-import { cloneDeep } from 'lodash'
-import { formatCurrency } from '~/core/utils/currency'
+import {mapActions, mapState} from 'vuex'
+import {cloneDeep} from 'lodash'
+import {formatCurrency} from '~/core/utils/currency'
 import ImageSlide from '~/components/shared/ImagesCustom/ImageSlide'
 import Contact from '~/vuetify-package/nextkit/components/custom/contact/Contact'
 import tourisServices from "@/services/apis/tourisServices";
@@ -90,62 +90,69 @@ export default {
   head() {
     return {
       title: this.productDetail.title,
-      description: this.$data.productDetail.short_description,
+      description: this.productDetail.seo_description && this.productDetail.seo_description.legnth
+        ? this.productDetail.seo_description
+        : this.productDetail.short_description,
       meta: [
         {
           hid: 'og:title',
           name: 'og:title',
-          content: this.$data.productDetail.seo_title
-            ? this.$data.productDetail.seo_title
-            : this.$data.productDetail.title,
+          content: this.productDetail.seo_title
+            ? this.productDetail.seo_title
+            : this.productDetail.title,
         },
         {
           hid: 'og:description',
           name: 'og:description',
-          content: this.$data.productDetail.seo_description
-            ? this.$data.productDetail.seo_description
-            : this.$data.productDetail.short_description,
+          content: this.productDetail.seo_description && this.productDetail.seo_description.legnth
+            ? this.productDetail.seo_description
+            : this.productDetail.short_description,
         },
         {
           hid: 'og:image',
           name: 'og:image',
-          content: this.$data.productDetail.img_src,
+          content: this.productDetail.img_src,
         },
         {
           hid: 'og:url',
           name: 'og:url',
-          content: `${process.env.BASE_DOMAIN}/handle/${this.$data.productDetail.handle}`,
+          content: `${process.env.BASE_DOMAIN}/handle/${this.productDetail.handle}`,
         },
         {
           hid: 'title',
           name: 'title',
-          content: this.$data.productDetail.seo_title
-            ? this.$data.productDetail.seo_title
-            : this.$data.productDetail.title,
+          content: this.productDetail.seo_title
+            ? this.productDetail.seo_title
+            : this.productDetail.title,
         },
         {
           hid: 'description',
           name: 'description',
-          content: this.$data.productDetail.seo_title
-            ? this.$data.productDetail.seo_title
-            : this.$data.productDetail.title,
+          content: this.productDetail.seo_title
+            ? this.productDetail.seo_title
+            : this.productDetail.title,
         },
         {
           hid: 'img',
           name: 'img',
-          content: this.$data.productDetail.img_src,
+          content: this.productDetail.img_src,
+        },
+        {
+          hid: 'image',
+          name: 'image',
+          content: this.productDetail.img_src,
         },
         {
           hid: 'url',
           name: 'url',
-          content: `${process.env.BASE_DOMAIN}/handle/${this.$data.productDetail.handle}`,
+          content: `${process.env.BASE_DOMAIN}/handle/${this.productDetail.handle}`,
         },
       ],
     }
   },
   layout: 'trip',
   name: 'TripDetail',
-  components: { Contact, ImageSlide },
+  components: {Contact, ImageSlide},
   data() {
     return {
       productDetail: {},
@@ -169,11 +176,9 @@ export default {
     }),
     async init() {
       const handle = this.$route.params.handle
-      console.log('=================')
-      console.log(handle)
-      const promise = [tourisServices.getDetailTour({ handle: handle })]
+      const promise = [tourisServices.getDetailTour({handle: handle})]
       const [trip] = await Promise.all(promise)
-      this.productDetail = cloneDeep({ ...trip, ...trip.trip })
+      this.productDetail = cloneDeep({...trip, ...trip.trip})
       this.isLoading = false
     },
   },
