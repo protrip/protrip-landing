@@ -15,13 +15,13 @@
       <div class="home-trip-price font-weight-medium font-18 mt-5">
         <p
           ><i class="mt-4 mdi mdi-map-marker-outline f-1 icon-bold" />
-          {{ `${trip.location_from} - ${trip.location_to}` }}
+          {{ `${getCountryName(trip.location_from)} - ${getCountryName(trip.location_to)}` }}
         </p>
         <span
           class="text-themecolor"
           :class="{ 'text-line': hasCompareAtPrice }"
         >
-          {{ compare_at_price | formatPrice }} {{ currency }}
+          {{ compare_at_price | formatPrice }}
         </span>
 
         <v-chip
@@ -32,7 +32,7 @@
           v-show="hasCompareAtPrice"
         >
           <v-icon left> mdi-label</v-icon>
-          {{ trip.price | formatPrice }} {{ currency }}
+          {{ trip.price | formatPrice }}
         </v-chip>
       </div>
       <v-btn class="mt-15" outlined color="error" @click="goToDetail"> Book now</v-btn>
@@ -40,6 +40,7 @@
   </v-card>
 </template>
 <script>
+import {mapState} from "vuex";
 import {formatCurrency} from "@/core/utils/currency";
 
 export default {
@@ -69,6 +70,7 @@ export default {
     }
   },
   computed: {
+    ...mapState('trip', ['locations']),
     compare_at_price(){
       if (this.hasCompareAtPrice) {
         return this.trip.compare_at_price
@@ -87,7 +89,14 @@ export default {
   methods: {
     goToDetail() {
       this.$router.push({name: 'trip-handle', params: {handle:this.trip.handle}})
+    },
+    getCountryName(code) {
+      const city = this.locations.find((e) => {
+        return e.city_code === code
+      })
+      return city ? city.city : code
     }
-  }
+  },
+
 }
 </script>

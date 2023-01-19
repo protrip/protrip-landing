@@ -360,7 +360,7 @@ export default {
     AllCustomComponents: () => import('@/components/custom/AllCustomComponents'),
     Contact,
   },
-  async mounted() {
+  async fetch() {
     await this.init()
   },
   computed: {

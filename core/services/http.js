@@ -12,6 +12,10 @@ export default function ({ $axios, redirect, isClient }) {
     if (resp.status === 200) {
       return {...resp.data}
     }
+
+    if (resp.status === 404) {
+      return {error_message: "not_found"}
+    }
   })
 
   $axios.onRequest(config => {
@@ -27,7 +31,7 @@ export default function ({ $axios, redirect, isClient }) {
 }
 
 const getMerchantFromStorage = () => {
-  
+
   // if (localstorage.merchant) {
   //   const merchant = {}
   //   return btoa(JSON.stringify(merchant))

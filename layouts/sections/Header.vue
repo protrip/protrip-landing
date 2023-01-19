@@ -29,12 +29,11 @@
             <v-tabs
               background-color="transparent"
               @change="onChangeRoute"
-              v-model="currentRoute"
+              :value="tab"
               color="white"
             >
               <v-tab
                 v-for="(route, index) in routesBar"
-                :value="currentRoute"
                 :href="route.key"
                 :key="index"
               >
@@ -141,15 +140,11 @@ export default {
       locale: 'vi',
       routesBar: [
         {
-          key: 'hotdeal',
-          value: 'hot_deal',
-        },
-        {
-          key: 'flights',
+          key: '/page/flights',
           value: 'flights',
         },
         {
-          key: 'hotel',
+          key: '/page/hotels',
           value: 'hotel',
         },
         {
@@ -157,15 +152,15 @@ export default {
           value: 'tours',
         },
         {
-          key: 'cars',
+          key: '/page/travel-cars',
           value: 'cars',
         },
         {
-          key: 'visa',
+          key: '/page/visa',
           value: 'visa',
         },
         {
-          key: 'playingtickets',
+          key: '/page/playing-tickets',
           value: 'playing_tickets',
         },
       ],
@@ -188,6 +183,18 @@ export default {
       }
     }
     this.bg = this.background
+  },
+  computed: {
+    tab() {
+      switch (this.$route.name) {
+        case '', 'trip', 'search':
+          return 'search'
+        case 'page-handle':
+          return `/page/${this.$route.params.handle}`
+        default:
+          return this.$route.name
+      }
+    }
   },
   methods: {
     ...mapActions('locale', ['setLocale']),
