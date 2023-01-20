@@ -13,12 +13,10 @@
     >
       <v-container class="py-0 fill-height">
         <!-- Logo -->
+        <v-app-bar-nav-icon class="mobile-menu" @click.stop="$emit('drawerChange')"></v-app-bar-nav-icon>
         <Logo/>
 
         <v-spacer></v-spacer>
-        <!--        <v-btn class="d-block d-md-none" @click="toggleClass()">-->
-        <!--          <v-app-bar-nav-icon class="white&#45;&#45;text" />-->
-        <!--        </v-btn>-->
         <!-- Desktop view Navigation -->
         <div
           class="navigation"
@@ -84,6 +82,7 @@
             </li>
           </ul>
         </div>
+
       </v-container>
     </v-app-bar>
     <!-- -----------------------------------------------
@@ -106,6 +105,10 @@ export default {
       type: String,
       default: () => 'white--text',
     },
+    routesBar: {
+      type: Array,
+      default: () => []
+    }
   },
   components: {
     Logo: () => import('@/layouts/sections/Logo'),
@@ -113,6 +116,7 @@ export default {
   data() {
     return {
       isActive: false,
+      drawer: false,
       bg: 'transparent',
       items: [...Array(4)].map((_, i) => `Item ${i}`),
       languages: [
@@ -138,32 +142,6 @@ export default {
         label: 'Vietnamese',
       },
       locale: 'vi',
-      routesBar: [
-        {
-          key: '/page/flights',
-          value: 'flights',
-        },
-        {
-          key: '/page/hotels',
-          value: 'hotel',
-        },
-        {
-          key: 'search',
-          value: 'tours',
-        },
-        {
-          key: '/page/travel-cars',
-          value: 'cars',
-        },
-        {
-          key: '/page/visa',
-          value: 'visa',
-        },
-        {
-          key: '/page/playing-tickets',
-          value: 'playing_tickets',
-        },
-      ],
       currentRoute: 'search',
       customColor: 'white--text',
     }
@@ -198,11 +176,10 @@ export default {
   },
   methods: {
     ...mapActions('locale', ['setLocale']),
-    toggleClass: function (event) {
+    toggleClass(event) {
       this.isActive = !this.isActive
     },
     onChangeLang(locale) {
-      console.log(locale)
       const language = this.languages.find((item) => item.locale === locale)
       this.language = language
       this.locale = locale

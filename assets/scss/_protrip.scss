@@ -35,6 +35,12 @@
   }
 }
 
+@media (min-width: 768px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
 .search-box {
   background-color: #ffffff;
   width: 100%;
