@@ -60,5 +60,8 @@
   "vietnamese": "vietnamien",
   "french": "Français",
   "address": "adresse",
-  "contact_success": "Avec succès! Nous vous contacterons bientôt!"
+  "contact_success": "Avec succès! Nous vous contacterons bientôt!",
+  "wheel_play": "Play",
+  "wheel_play_invalid": "You have played before",
+  "wheel_play_congra": "Congratulations, your reward is: "
 }

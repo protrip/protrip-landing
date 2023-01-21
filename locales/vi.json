@@ -63,5 +63,8 @@
   "vietnamese": "Tiếng Việt",
   "french": "Tiếng Pháp",
   "address": "Địa chỉ",
-  "contact_success": "Thành công! Chúng tôi sẽ liên lạc với bạn sớm nhất có thể!"
+  "contact_success": "Thành công! Chúng tôi sẽ liên lạc với bạn sớm nhất có thể!",
+  "wheel_play": "Quay thưởng",
+  "wheel_play_invalid": "Số điện thoại này của bạn đã quay thưởng trước đó rồi.",
+  "wheel_play_congra": "Xin chúc mừng phần thưởng của bạn là: "
 }

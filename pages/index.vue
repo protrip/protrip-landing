@@ -3,7 +3,7 @@
     <!-- -----------------------------------------------
     Banner
     ----------------------------------------------- -->
-    <Banner @search="onApplyFilterSearch" />
+    <Banner @search="onApplyFilterSearch"/>
     <!--  -----------------------------------------------
     ./ Banner
     ----------------------------------------------- -->
@@ -12,7 +12,7 @@
     ----------------------------------------------- -->
     <div v-show="loading">
       <div class="blog-component mini-spacer mt-36">
-        <HomeLoading />
+        <HomeLoading/>
       </div>
     </div>
     <div v-show="!loading">
@@ -129,7 +129,7 @@
           <v-row justify="center" class="feature2-spacer">
             <template v-for="(loc, index) in featuredLocations">
               <v-col cols="6" md="6" lg="3" :key="index" @click="goToFeaturedLocations(loc)">
-                  <featured-location :location="loc" class="cursor-pointer"></featured-location>
+                <featured-location :location="loc" class="cursor-pointer"></featured-location>
               </v-col>
             </template>
           </v-row>
@@ -176,8 +176,9 @@
                     <i class="mdi mdi-star"></i>
                   </div>
                   <h5 class="font-weight-medium font-18">Instant Solutions</h5>
-                  <p class="mt-10 mb-8"> </p
-                  ><p class="mt-10 mb-8">
+                  <p class="mt-10 mb-8"></p
+                  >
+                  <p class="mt-10 mb-8">
                     You can relay on our amazing features list and also our customer services will
                     be great experience. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Praesent tristique pellentesque ipsum.
@@ -215,7 +216,7 @@
           ----------------------------------------------- -->
           <v-row>
             <v-col cols="12" lg="6" md="6" sm="12">
-              <Contact :outline="false" :solo="true" />
+              <Contact :outline="false" :solo="true"/>
             </v-col>
             <v-col></v-col>
           </v-row>
@@ -228,127 +229,24 @@
       <!-- -----------------------------------------------
       ./ Coming Soon
       ----------------------------------------------- -->
+
+      <PromoModal />
     </div>
   </div>
 </template>
 
 <script>
+import {mapActions, mapState} from 'vuex'
 import Banner from '@/components/protrip/Banner'
 import BannerText from '@/components/protrip/BannerText'
 import TripItem from '@/components/protrip/TripItem'
 import FeaturedLocation from '@/components/protrip/FeaturedLocation'
 import tourisServices from '@/services/apis/tourisServices'
 import HomeLoading from '@/components/protrip/HomeLoading'
-import { mapActions, mapState } from 'vuex'
 import Contact from '~/vuetify-package/nextkit/components/custom/contact/Contact'
+import PromoModal from "@/components/protrip/PromoModal";
 
 export default {
-  data() {
-    return {
-      loading: true,
-      featuredTrips: [],
-      locations_all: [],
-      demoFeaturedTrips: [
-        {
-          id: 0,
-          title: 'Learn from small things to create something bigger.',
-          handle: 'default-title-1670661861',
-          short_description_1: '3 days 2 nights, 3 stars hotel',
-          location_from: 'HN',
-          location_to: 'HCM',
-          price: 1000000,
-          compare_at_price: 500000,
-          img_src: 'https://assets.miinho.click/images/5404232a1314663e2d1570481061aa32.jpeg',
-          published: true,
-          staff_price: 20000000000,
-          featured: true,
-        },
-        {
-          id: 0,
-          title: 'Learn from small things to create something bigger.',
-          handle: 'default-title-1670661861',
-          short_description_1: '3 days 2 nights, 3 stars hotel',
-          location_from: 'HN',
-          location_to: 'HCM',
-          price: 1000000,
-          compare_at_price: 500000,
-          img_src: 'https://assets.miinho.click/images/5404232a1314663e2d1570481061aa32.jpeg',
-          published: true,
-          staff_price: 20000000000,
-          featured: true,
-        },
-        {
-          id: 0,
-          title: 'Learn from small things to create something bigger.',
-          handle: 'default-title-1670661861',
-          short_description_1: '3 days 2 nights, 3 stars hotel',
-          location_from: 'HN',
-          location_to: 'HCM',
-          price: 1000000,
-          compare_at_price: 500000,
-          img_src: 'https://assets.miinho.click/images/5404232a1314663e2d1570481061aa32.jpeg',
-          published: true,
-          staff_price: 20000000000,
-          featured: true,
-        },
-      ],
-      demoLocations: [
-        {
-          id: 1,
-          country: 'Vietnam',
-          country_code: 'VN',
-          city: 'Hà Nội',
-          city_code: 'HN',
-          img_src: 'https://assets.miinho.click/images/723e1b937892c26313beb976869ba2a2.jpg',
-          created_at: 1666624260,
-          updated_at: 1666624260,
-          published: true,
-          featured: true,
-        },
-        {
-          id: 1,
-          country: 'Vietnam',
-          country_code: 'VN',
-          city: 'Hồ Chí Minh',
-          city_code: 'HCM',
-          img_src: 'https://assets.miinho.click/images/723e1b937892c26313beb976869ba2a2.jpg',
-          created_at: 1666624260,
-          updated_at: 1666624260,
-          published: true,
-          featured: true,
-        },
-        {
-          id: 1,
-          country: 'Vietnam',
-          country_code: 'VN',
-          city: 'Hải Phòng',
-          city_code: 'HP',
-          img_src: 'https://assets.miinho.click/images/723e1b937892c26313beb976869ba2a2.jpg',
-          created_at: 1666624260,
-          updated_at: 1666624260,
-          published: true,
-          featured: true,
-        },
-        {
-          id: 1,
-          country: 'Vietnam',
-          country_code: 'VN',
-          city: 'Đà Nẵng',
-          city_code: 'DN',
-          img_src: 'https://assets.miinho.click/images/723e1b937892c26313beb976869ba2a2.jpg',
-          created_at: 1666624260,
-          updated_at: 1666624260,
-          published: true,
-          featured: true,
-        },
-      ],
-      customer: {
-        name: '',
-        phone: '',
-        note: '',
-      },
-    }
-  },
   components: {
     Banner,
     BannerText,
@@ -358,7 +256,20 @@ export default {
     BannerText1: () => import('@/components/custom/banner/BannerText'),
     ComingSoon: () => import('@/components/shared/coming-soon/ComingSoon'),
     AllCustomComponents: () => import('@/components/custom/AllCustomComponents'),
+    PromoModal,
     Contact,
+  },
+  data() {
+    return {
+      loading: true,
+      featuredTrips: [],
+      locations_all: [],
+      customer: {
+        name: '',
+        phone: '',
+        note: '',
+      },
+    }
   },
   async fetch() {
     await this.init()
@@ -388,13 +299,15 @@ export default {
       }
     },
     onApplyFilterSearch(filter) {
-      this.$router.push({ name: 'search', query: filter })
+      this.$router.push({name: 'search', query: filter})
     },
     goToFeaturedLocations(loc) {
-      this.$router.push({name: 'search', query: {
-        to: loc.city_code
-      }})
-    }
+      this.$router.push({
+        name: 'search', query: {
+          to: loc.city_code
+        }
+      })
+    },
   },
 }
 </script>

@@ -21,7 +21,7 @@
           v-model="group"
           active-class="deep-purple--text text--accent-4"
         >
-          <v-list-item  v-for="(route, index) in routesBar">
+          <v-list-item  v-for="(route, index) in routesBar" :key="index">
             <v-list-item-title >
               <a :href="route.key">
                 {{
@@ -75,7 +75,6 @@ export default {
   },
   head: {
     script: [
-      { hid: 'woay', src: 'https://woay.space/w/4cac5298-4693-4ccc-9c95-ee60e19a057b/popup.js', defer: true }
     ]
   },
   components: {

@@ -165,3 +165,28 @@
 .text-black {
   color: black;
 }
+
+.text-white {
+  color: white;
+}
+
+.wheel-modal {
+  padding: 0px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.lucky-wheel {
+  min-width: 400px;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}

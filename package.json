@@ -24,6 +24,7 @@
     "lodash": "^4.17.21",
     "nuxt": "^2.15.7",
     "vue-country-flag": "^2.3.2",
+    "vue-fortune-wheel": "^1.0.3",
     "vue-typed-js": "^0.1.2",
     "vuetify": "^2.5.5"
   },
