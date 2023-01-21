@@ -220,6 +220,7 @@ export default {
         await luckyCampaignService.submitReward(1, {
           reward: {
             phone_number: this.customer.phoneNumber,
+            name: this.customer.name,
             code: code.code,
           }
         })
