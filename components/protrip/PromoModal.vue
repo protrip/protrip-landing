@@ -23,7 +23,7 @@
             @rotateStart="onCanvasRotateStart"
             @rotateEnd="onRotateEnd"
           />
-          <div v-if="!prize" class="flex-1 flex-column pl-40">
+          <div v-if="!prize" class="flex-1 flex-column pl-40 mb-80">
             <div class="text-white" v-html="wheelContent.body_html">
 
             </div>
@@ -77,7 +77,7 @@
               </v-col>
             </v-row>
           </div>
-          <div v-else class="flex-1 flex-column pl-40 text-white">
+          <div v-else class="flex-1 flex-column pl-40 text-white mb-80">
             <v-row class="mt-15">
               <v-col cols="12" md="12">
                 <h1 class="text-white"> {{ $t('wheel_play_congra') }} </h1>
