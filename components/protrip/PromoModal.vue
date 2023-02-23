@@ -189,11 +189,13 @@ export default {
       }
     },
     async init() {
-      const res = await pageServices.getPageDetail({handle: 'wheel'})
-      if (res && res.success) {
-        this.wheelContent = res.page
-        await sleep(1500)
-        this.drawer = true
+      if (this.prizes && this.prizes.length) {
+        const res = await pageServices.getPageDetail({handle: 'wheel'})
+        if (res && res.success) {
+          this.wheelContent = res.page
+          await sleep(1500)
+          this.drawer = true
+        }
       }
     },
     onCanvasRotateStart(rotate) {
